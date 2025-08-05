@@ -82,5 +82,6 @@ Landing Page → Restaurant Wine List Page
 Restaurant Wine List Page → Wine Detail Page
 Wine Detail Page → Inventory & Pricing Page
 
-
+## Wireframes
+<img src="https://github.com/user-attachments/assets/e49a1705-9831-46f1-8d29-0eb2abbfe1cf" width="600">
 
