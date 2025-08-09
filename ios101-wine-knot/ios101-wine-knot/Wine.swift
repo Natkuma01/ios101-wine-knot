@@ -1,19 +1,16 @@
 import Foundation
 
-struct WineResponse: Codable {
-    let wines: [Wine]
-}
-
 struct Wine: Codable {
-    let wine_id: String
+    let grapes: [String]
+    let name: String
+    let producer: String
     let country: String
-    let region_1: String?
-    let variety: String
-    let title: String
-    let description: String
-    let winery: String
-    let points: String
-    let price: String
+    let region: String
+    let imageURL: String
+    let notes: String
+    let year: Int?
+    let wine_type: String?
+    let restaurant: Int?
 
     // Generated values
     let buyingPrice: Double
@@ -22,27 +19,28 @@ struct Wine: Codable {
         return sellingPrice - buyingPrice
     }
 
-    enum CodingKeys: String, CodingKey {
-        case wine_id, country, region_1, variety, title, description, winery, points, price
-    }
-
-    // Custom initializer to add generated fields
+    // Custom initializer for generated values
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        wine_id = try container.decode(String.self, forKey: .wine_id)
+        grapes = try container.decode([String].self, forKey: .grapes)
+        name = try container.decode(String.self, forKey: .name)
+        producer = try container.decode(String.self, forKey: .producer)
         country = try container.decode(String.self, forKey: .country)
-        region_1 = try container.decodeIfPresent(String.self, forKey: .region_1) ?? "Unknown"
-        variety = try container.decode(String.self, forKey: .variety)
-        title = try container.decode(String.self, forKey: .title)
-        description = try container.decode(String.self, forKey: .description)
-        winery = try container.decode(String.self, forKey: .winery)
-        points = try container.decode(String.self, forKey: .points)
-        price = try container.decode(String.self, forKey: .price)
+        region = try container.decode(String.self, forKey: .region)
+        imageURL = try container.decode(String.self, forKey: .imageURL)
+        notes = try container.decode(String.self, forKey: .notes)
+        year = try container.decodeIfPresent(Int.self, forKey: .year)
+        wine_type = try container.decodeIfPresent(String.self, forKey: .wine_type)
+        restaurant = try container.decodeIfPresent(Int.self, forKey: .restaurant)
 
-        // Generate buying/selling price
-        let base = Double(price) ?? 10.0
-        self.buyingPrice = Double.random(in: base * 0.5 ... base * 0.8)
-        self.sellingPrice = Double.random(in: base * 1.0 ... base * 1.4)
+        // Generate buying/selling price (random example)
+        self.buyingPrice = Double.random(in: 10.0 ... 1000.0)
+        self.sellingPrice = Double.random(in: 30.0 ... 1000.0)
+    }
+
+    // Coding keys to match your JSON keys exactly
+    enum CodingKeys: String, CodingKey {
+        case grapes, name, producer, country, region, imageURL, notes, year, wine_type, restaurant
     }
 }

@@ -12,43 +12,52 @@ class WineListViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     private var wines: [Wine] = []
+    
+    var selectedRestaurant: Restaurant?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Wine List"
+        title = selectedRestaurant?.name ?? "Wine List"
 
         tableView.delegate = self
-                tableView.dataSource = self
-                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "WineCell")
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "WineCell")
 
-                fetchWines()
+        fetchWines()
     }
 
     private func fetchWines() {
-           guard let url = URL(string: "https://premium-wine-api-collection.p.rapidapi.com/rapidapi/wine/wine_pagination.php?page_no=2") else { return }
-
-           var request = URLRequest(url: url)
-           request.httpMethod = "GET"
-           request.setValue("2ae60dd531msh63911a58f3f78b8p1752fajsnc35a8a2ef260", forHTTPHeaderField: "X-RapidAPI-Key")
-           request.setValue("premium-wine-api-collection.p.rapidapi.com", forHTTPHeaderField: "X-RapidAPI-Host")
-
-           let task = URLSession.shared.dataTask(with: request) { data, response, error in
-               if let data = data {
-                   do {
-                       let result = try JSONDecoder().decode(WineResponse.self, from: data)
-                       self.wines = result.wines
-                       DispatchQueue.main.async {
-                           self.tableView.reloadData()
-                       }
-                   } catch {
-                       print("Decoding error:", error)
-                   }
-               } else {
-                   print("Network error:", error?.localizedDescription ?? "Unknown error")
-               }
-           }
-           task.resume()
-       }
+        guard let url = URL(string: "http://127.0.0.1:8000/wines/wines/") else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    //print("Response JSON: \(jsonString)")
+                }
+                do {
+                    let wines = try JSONDecoder().decode([Wine].self, from: data)
+                    if let restaurantId = self.selectedRestaurant?.id {
+                        self.wines = wines.filter { $0.restaurant == restaurantId }
+                        print("restaurant id: \(restaurantId)")
+                        print("Count: \(self.wines.count)")
+                    } else {
+                        self.wines = wines
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch {
+                    print("Decoding error:", error)
+                }
+            } else {
+                print("Network error:", error?.localizedDescription ?? "Unknown error")
+            }
+        }
+        task.resume()
+    }
    }
 
    // MARK: - Table View Delegate & Data Source
@@ -64,12 +73,8 @@ class WineListViewController: UIViewController {
         let wine = wines[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "WineCell", for: indexPath)
 
-        var content = cell.defaultContentConfiguration()
-        
-        let title = wine.title
-        let cleanedTitle = title.replacingOccurrences(of: "\\s*\\([^\\)]*\\)$", with: "", options: .regularExpression)
-        
-        content.text = cleanedTitle
+        var content = cell.defaultContentConfiguration()        
+        content.text = wine.name
         cell.contentConfiguration = content
         return cell
     }

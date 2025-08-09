@@ -27,7 +27,7 @@ class AddRestaurantViewController: UIViewController {
               let address = addressTextField.text, !address.isEmpty else {
             return
         }
-        let restaurant = Restaurant(name: name, address: address)
+        let restaurant = Restaurant(id: nil, name: name, address: address)
         delegate?.didAddRestaurant(restaurant)
         dismiss(animated: true)
     }
