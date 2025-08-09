@@ -67,7 +67,16 @@ extension RestaurantListViewController: UITableViewDataSource, UITableViewDelega
         cell.contentConfiguration = content
         return cell
     }
-}
+    
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            restaurants.remove(at: indexPath.row)
+            saveRestaurants()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }}
 
 extension RestaurantListViewController: AddRestaurantDelegate {
     func didAddRestaurant(_ restaurant: Restaurant) {
