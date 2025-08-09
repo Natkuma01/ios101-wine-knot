@@ -14,6 +14,7 @@ class WineListViewController: UIViewController {
     private var wines: [Wine] = []
     
     var selectedRestaurant: Restaurant?
+    var selectedCategory: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,11 @@ class WineListViewController: UIViewController {
                         self.wines = wines.filter { $0.restaurant == restaurantId }
                         print("restaurant id: \(restaurantId)")
                         print("Count: \(self.wines.count)")
+                        
+                        if let category = self.selectedCategory {
+                            self.wines = self.wines.filter { $0.wine_type?.lowercased() == category.lowercased()
+                            }
+                        }
                     } else {
                         self.wines = wines
                     }

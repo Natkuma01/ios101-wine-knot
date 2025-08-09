@@ -97,10 +97,10 @@ extension RestaurantListViewController: UITableViewDataSource, UITableViewDelega
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let wineListVC = storyboard.instantiateViewController(withIdentifier: "WineListViewController") as? WineListViewController {
+        if let wineCategoryVC = storyboard.instantiateViewController(withIdentifier: "WineCategoryViewController") as? WineCategoryViewController {
             let selectedRestaurant = restaurants[indexPath.row]
-            wineListVC.selectedRestaurant = selectedRestaurant
-            navigationController?.pushViewController(wineListVC, animated: true)
+            wineCategoryVC.selectedRestaurant = selectedRestaurant
+            navigationController?.pushViewController(wineCategoryVC, animated: true)
         }
     }
 }
