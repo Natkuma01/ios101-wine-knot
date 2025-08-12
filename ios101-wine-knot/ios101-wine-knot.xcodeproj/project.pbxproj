@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C35DBD162E4BD82600BE02E0 /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = C35DBD152E4BD82600BE02E0 /* NukeExtensions */; };
+		C35DBD182E4BD82B00BE02E0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = C35DBD172E4BD82B00BE02E0 /* Nuke */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C32FB36F2E42ACB800D49CAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C35DBD162E4BD82600BE02E0 /* NukeExtensions in Frameworks */,
+				C35DBD182E4BD82B00BE02E0 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +98,7 @@
 				C32FB35A2E42ACB700D49CAE /* ios101-wine-knot */,
 				C32FB3712E42ACB800D49CAE /* ios101-wine-knotTests */,
 				C32FB37B2E42ACB800D49CAE /* ios101-wine-knotUITests */,
+				C35DBD142E4BD82100BE02E0 /* Frameworks */,
 				C32FB3592E42ACB700D49CAE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +111,13 @@
 				C32FB3782E42ACB800D49CAE /* ios101-wine-knotUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C35DBD142E4BD82100BE02E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +140,8 @@
 			);
 			name = "ios101-wine-knot";
 			packageProductDependencies = (
+				C35DBD152E4BD82600BE02E0 /* NukeExtensions */,
+				C35DBD172E4BD82B00BE02E0 /* Nuke */,
 			);
 			productName = "ios101-wine-knot";
 			productReference = C32FB3582E42ACB700D49CAE /* ios101-wine-knot.app */;
@@ -208,6 +225,9 @@
 			);
 			mainGroup = C32FB34F2E42ACB700D49CAE;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C35DBD132E4BD4F400BE02E0 /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C32FB3592E42ACB700D49CAE /* Products */;
 			projectDirPath = "";
@@ -563,6 +583,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C35DBD132E4BD4F400BE02E0 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C35DBD152E4BD82600BE02E0 /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C35DBD132E4BD4F400BE02E0 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+		C35DBD172E4BD82B00BE02E0 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C35DBD132E4BD4F400BE02E0 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C32FB3502E42ACB700D49CAE /* Project object */;
 }

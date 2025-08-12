@@ -85,5 +85,15 @@ class WineListViewController: UIViewController {
         return cell
     }
        
+       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           let selectedWine = wines[indexPath.row]
+           
+           let storyboard = UIStoryboard(name: "Main", bundle: nil)
+           if let wineDetailVC = storyboard.instantiateViewController(withIdentifier: "WineDetailViewController") as? WineDetailViewController {
+               wineDetailVC.wine = selectedWine
+               navigationController?.pushViewController(wineDetailVC, animated: true)
+               
+           }
+       }
 
 }
