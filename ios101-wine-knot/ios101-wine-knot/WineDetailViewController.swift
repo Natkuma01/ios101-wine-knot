@@ -6,7 +6,7 @@ class WineDetailViewController: UIViewController {
     
     var wine: Wine?
 
-    // MARK: - Outlets
+    
     @IBOutlet weak var wineNameLabel: UILabel!
     @IBOutlet weak var producerLabel: UILabel!
     @IBOutlet weak var countryRegionLabel: UILabel!
@@ -18,6 +18,17 @@ class WineDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Configure the wine image view
+        wineImageView.layer.cornerRadius = 10
+        wineImageView.clipsToBounds = true
+        
+        // Load wine data
+        loadWineData()
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func loadWineData() {
         updateUI()
     }
     
@@ -42,15 +53,12 @@ class WineDetailViewController: UIViewController {
     
 
     @IBAction func inventoryTrackingButtonTapped(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowInventorySegue", sender: self)
-    }
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowInventorySegue" {
-            if let inventoryVC = segue.destination as? InventoryViewController, let wine = wine {
-                //inventoryVC.wine = wine
-            }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let inventoryVC = storyboard.instantiateViewController(withIdentifier: "InventoryViewController") as? InventoryViewController {
+            navigationController?.pushViewController(inventoryVC, animated: true)
         }
     }
+    
+    
 }
