@@ -50,7 +50,14 @@ User Stories
 
 ---
 ### Screen Archetypes
-
+<div>
+    <a href="https://www.loom.com/share/719ed7092b914408b50ae3ac1b4bd18a">
+      <p>Loom Message - 12 August 2025 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/719ed7092b914408b50ae3ac1b4bd18a">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/719ed7092b914408b50ae3ac1b4bd18a-a5e033ec514922b8-full-play.gif">
+    </a>
+  </div>
 
 ---
 
