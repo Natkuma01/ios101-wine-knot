@@ -32,14 +32,14 @@ The MVP will include restaurant creation, wine list management, inventory/pricin
 ## Product Spec
 User Stories
 ### Required Must-Have Stories:
-- [ ] User can create a new restaurant entry.
-- [ ] User can view a list of all restaurants.
-- [ ] User can tap into a restaurant to see its wine list.
+- ✅ User can create a new restaurant entry.
+- ✅ User can view a list of all restaurants.
+- ✅ User can tap into a restaurant to see its wine list.
 - [ ] User can add a new wine to the restaurant’s wine list.
 - [ ] User can delete a wine from the wine list.
-- [ ] User can tap on a wine to see detailed information (region, vintage, pairing, etc.).
-- [ ] User can access the inventory screen for a wine to see stock and pricing.
-- [ ] User can adjust the margin to see updated selling prices.
+- ✅ User can tap on a wine to see detailed information (region, vintage, pairing, etc.).
+- ✅ User can access the inventory screen for a wine to see stock and pricing.
+- ✅ User can adjust the margin to see updated selling prices.
 
 ### Optional Nice-to-Have Stories:
 - [ ] User can search or filter wines by region or category.
